@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>С 8 Марта  Варюш❤️</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ff9ec4,#ffd6e8);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.card{
+    background: rgba(255,255,255,0.15);
+    padding:40px;
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    position:relative;
+    z-index:2;
+    max-width:500px;
+}
+
+img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 25px;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+    background:white;
+    color:#ff4f9a;
+}
+
+.hidden{
+    display:none;
+    margin-top:20px;
+    font-size:22px;
+}
+
+/* падающие цветы */
+
+.flower{
+    position:fixed;
+    top:-50px;
+    font-size:25px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* сердечки */
+
+.heart{
+    position:fixed;
+    font-size:25px;
+    animation:heartFloat 1.5s ease-out forwards;
+    pointer-events:none;
+}
+
+@keyframes heartFloat{
+    0%{
+        transform:scale(0.5);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-80px) scale(1.5);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<img src="cat.jpg">
+
+<h1>С 8 Марта 🌸</h1>
+
+<p>
+Любимая, поздравляю тебя с этим прекрасным днём!  
+Пусть у тебя всегда будет много счастья, улыбок и хорошего настроения.
+</p>
+
+<button onclick="showMessage()">Нажми на сюрприз</button>
+
+<div id="message" class="hidden">
+Я тебя очень люблю ❤️
+</div>
+
+</div>
+
+<script>
+
+function showMessage(){
+document.getElementById("message").style.display="block";
+}
+
+/* падающие цветы */
+
+function createFlower(){
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML = "🌸";
+
+    flower.style.left = Math.random() * window.innerWidth + "px";
+    flower.style.animationDuration = (3 + Math.random() * 5) + "s";
+    flower.style.fontSize = (20 + Math.random() * 20) + "px";
+
+    document.body.appendChild(flower);
+
+    setTimeout(()=>{
+        flower.remove();
+    },8000);
+}
+
+setInterval(createFlower, 300);
+
+/* сердечки при клике */
+
+document.addEventListener("click", function(e){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = e.clientX + "px";
+    heart.style.top = e.clientY + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },1500);
+});
+
+</script>
+
+</body>
+</html>
